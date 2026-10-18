@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Translumo.Infrastructure.Language;
 using Translumo.Translation.Configuration;
 using Translumo.Translation.Exceptions;
@@ -47,9 +48,15 @@ namespace Translumo.Translation
             {
                 try
                 {
+#if DEBUG
+                    Stopwatch sw = Stopwatch.StartNew();
+#endif
                     var result = await TranslateTextInternal(container, sourceText);
                     container.MarkContainerIsUsed(true);
-
+#if DEBUG
+                    sw.Stop();
+                    Logger.LogInformation($"Translation completed in {sw.ElapsedMilliseconds} ms. Memory: {GC.GetTotalMemory(false) / 1024 / 1024} MB");
+#endif
                     return result;
                 }
                 catch (TranslationException ex)

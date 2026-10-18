@@ -6,6 +6,7 @@
     xmlns:controls="clr-namespace:Translumo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mde="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"
     xmlns:translation="clr-namespace:Translumo.Translation;assembly=Translumo.Translation"
     xmlns:tts="clr-namespace:Translumo.TTS;assembly=Translumo.TTS"
     d:DesignHeight="450"
@@ -39,27 +40,27 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel Margin="0,0,15,0">
+            <StackPanel Margin="0,0,0,0" Width="450">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type StackPanel}">
                         <Setter Property="Margin" Value="0,0,0,20" />
                     </Style>
                 </StackPanel.Resources>
-            <StackPanel Orientation="Horizontal">
-                <ComboBox
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox
                     DisplayMemberPath="DisplayName"
                     FontSize="14"
                     ItemsSource="{Binding Path=AvailableLanguages}"
                     SelectedValue="{Binding Path=TranslateFromLang}"
                     SelectedValuePath="LanguageDescriptor.Language"
                     Style="{StaticResource ComboBoxBase}" />
-                <Label
+                    <Label
                     Margin="10,0,0,0"
                     Content="{DynamicResource Str.LangSettings.SourceLang}"
                     Style="{StaticResource ControlCaptionLabel}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <ComboBox
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox
                     DisplayMemberPath="DisplayName"
                     FontSize="14"
                     ItemsSource="{Binding Path=AvailableTranslationLanguages}"
@@ -67,59 +68,59 @@
                     SelectedValue="{Binding Path=TranslateToLang}"
                     SelectedValuePath="LanguageDescriptor.Language"
                     Style="{StaticResource ComboBoxBase}" />
-                <Label
+                    <Label
                     Margin="10,0,0,0"
                     Content="{DynamicResource Str.LangSettings.TranslationLang}"
                     Style="{StaticResource ControlCaptionLabel}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <ComboBox
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox
                     Width="130"
                     FontSize="14"
                     ItemsSource="{Binding Source={StaticResource dataFromEnum}}"
                     SelectedItem="{Binding Path=Model.Translator}"
                     Style="{DynamicResource MaterialDesignComboBox}" />
-                <Label
+                    <Label
                     Margin="10,0,0,0"
                     HorizontalAlignment="Stretch"
                     Content="{DynamicResource Str.LangSettings.Translator}"
                     Style="{StaticResource ControlCaptionLabel}" />
-            </StackPanel>
-            <GroupBox
+                </StackPanel>
+                <GroupBox
                 Margin="0,20,0,0"
                 Style="{StaticResource MaterialDesignGroupBox}"
                 Visibility="{Binding IsLibreTranslateSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <GroupBox.Header>
-                    <Label
+                    <GroupBox.Header>
+                        <Label
                         Margin="0,-7,0,-7"
                         Content="LibreTranslate Setup"
                         Style="{StaticResource SecondaryHeaderLabel}" />
-                </GroupBox.Header>
-                <StackPanel>
-                    <!-- Server URL Input -->
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                        <TextBox
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <!-- Server URL Input -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBox
                             Width="200"
                             FontSize="14"
                             Text="{Binding Path=Model.LibreTranslateUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{DynamicResource MaterialDesignTextBox}" />
-                        <Label
+                            <Label
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             Content="Server URL"
                             Style="{StaticResource ControlCaptionLabel}" />
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!-- Control Row: Test Button + Help Button (?) + Feedback -->
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <Button
+                        <!-- Control Row: Test Button + Help Button (?) + Feedback -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Button
                             Command="{Binding RunLibreTranslateCommand}"
                             Content="Run Libre"
                             IsEnabled="{Binding CanTestLibreTranslate}"
                             Style="{StaticResource PrimaryButton}" />
-                        
-                        <!-- Help Toggle Button (?) -->
-                        <Button
+
+                            <!-- Help Toggle Button (?) -->
+                            <Button
                             Margin="10,0,0,0"
                             Command="{Binding ToggleLibreTranslateGuideCommand}"
                             Content="( ? )"
@@ -128,8 +129,8 @@
                             Width="36"
                             Height="32"
                             Padding="0" />
-                        
-                        <TextBlock
+
+                            <TextBlock
                             Margin="15,0,0,0"
                             VerticalAlignment="Center"
                             FontSize="12"
@@ -137,58 +138,58 @@
                             Foreground="{Binding LibreTranslateTestResultColor}"
                             Text="{Binding LibreTranslateTestResult}"
                             TextWrapping="WrapWithOverflow" />
-                    </StackPanel>
+                        </StackPanel>
 
-                </StackPanel>
-            </GroupBox>
-            <GroupBox
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
                 Margin="0,20,0,0"
                 Style="{StaticResource MaterialDesignGroupBox}"
                 Visibility="{Binding IsRivaSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <GroupBox.Header>
-                    <Label
+                    <GroupBox.Header>
+                        <Label
                         Margin="0,-7,0,-7"
                         Content="NVIDIA Riva Configuration"
                         Style="{StaticResource SecondaryHeaderLabel}" />
-                </GroupBox.Header>
-                <StackPanel>
-                    <!-- Server URL Input -->
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                        <TextBox
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <!-- Server URL Input -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBox
                             Width="250"
                             FontSize="14"
                             Text="{Binding Path=Model.RivaUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{DynamicResource MaterialDesignTextBox}" />
-                        <Label
+                            <Label
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             Content="Endpoint URL"
                             Style="{StaticResource ControlCaptionLabel}" />
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!-- API Key Input -->
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <TextBox
+                        <!-- API Key Input -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBox
                             Width="250"
                             FontSize="14"
                             Text="{Binding Path=Model.RivaApiKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{DynamicResource MaterialDesignTextBox}" />
-                        <Label
+                            <Label
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             Content="API Key"
                             Style="{StaticResource ControlCaptionLabel}" />
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!-- Test Button and Feedback -->
-                    <StackPanel Orientation="Horizontal">
-                        <Button
+                        <!-- Test Button and Feedback -->
+                        <StackPanel Orientation="Horizontal">
+                            <Button
                             Command="{Binding TestRivaCommand}"
                             Content="Test Connection"
                             IsEnabled="{Binding CanTestRiva}"
                             Style="{StaticResource PrimaryButton}" />
-                        
-                        <TextBlock
+
+                            <TextBlock
                             Margin="15,0,0,0"
                             VerticalAlignment="Center"
                             FontSize="12"
@@ -196,73 +197,73 @@
                             Foreground="{Binding RivaTestResultColor}"
                             Text="{Binding RivaTestResult}"
                             TextWrapping="WrapWithOverflow" />
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox
+                </GroupBox>
+                <GroupBox
                 Margin="0,20,0,0"
                 Style="{StaticResource MaterialDesignGroupBox}"
                 Visibility="{Binding IsAiTranslatorSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <GroupBox.Header>
-                    <Label
+                    <GroupBox.Header>
+                        <Label
                         Margin="0,-7,0,-7"
                         Content="AI Translator Configuration (BYOK)"
                         Style="{StaticResource SecondaryHeaderLabel}" />
-                </GroupBox.Header>
-                <StackPanel>
-                    <!-- Provider selection -->
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <ComboBox
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <!-- Provider selection -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <ComboBox
                             Width="200"
                             FontSize="14"
                             ItemsSource="{Binding AvailableAiProviders}"
                             SelectedItem="{Binding Model.AiProvider}"
                             Style="{DynamicResource MaterialDesignComboBox}" />
-                        <Label
+                            <Label
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             Content="AI Provider"
                             Style="{StaticResource ControlCaptionLabel}" />
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!-- API Key input -->
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <TextBox
+                        <!-- API Key input -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBox
                             Width="200"
                             FontSize="14"
                             Text="{Binding CurrentAiApiKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{DynamicResource MaterialDesignTextBox}" />
-                        <Label
+                            <Label
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             Content="API Key"
                             Style="{StaticResource ControlCaptionLabel}" />
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!-- Model input -->
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <TextBox
+                        <!-- Model input -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBox
                             Width="200"
                             FontSize="14"
                             Text="{Binding CurrentAiModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{DynamicResource MaterialDesignTextBox}" />
-                        <Label
+                            <Label
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             Content="{Binding AiModelCaption, Mode=OneWay}"
                             Style="{StaticResource ControlCaptionLabel}" />
-                    </StackPanel>
+                        </StackPanel>
 
 
-                    <!-- Test Button and Feedback -->
-                    <StackPanel Orientation="Horizontal">
-                        <Button
+                        <!-- Test Button and Feedback -->
+                        <StackPanel Orientation="Horizontal">
+                            <Button
                             Command="{Binding TestAiCommand}"
                             Content="Test Connection"
                             IsEnabled="{Binding CanTestAi}"
                             Style="{StaticResource PrimaryButton}" />
-                        
-                        <TextBlock
+
+                            <TextBlock
                             Margin="15,0,0,0"
                             VerticalAlignment="Center"
                             FontSize="12"
@@ -270,84 +271,111 @@
                             Foreground="{Binding AiTestResultColor}"
                             Text="{Binding AiTestResult}"
                             TextWrapping="WrapWithOverflow" />
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox
+                </GroupBox>
+                <GroupBox
+                Margin="0,0,0,0"
+                Height="135"
+                Style="{StaticResource MaterialDesignGroupBox}"
+                Visibility="{Binding IsOnnxSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <GroupBox.Header>
+                        <Label
+                        Margin="0,-7,0,-7"
+                        Content="Beam Search settings"
+                        Style="{StaticResource SecondaryHeaderLabel}" />
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <mde:OversizedNumberSpinner
+                            Height="70"
+                            Min="1"
+                            Max="4"
+                            Value="{Binding Model.BeamCount, Mode=TwoWay}" />
+                            <Label Content="{DynamicResource Str.LangSettings.BeamCount}" Style="{StaticResource ControlCaptionLabel}" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
                 Margin="0,20,0,0"
                 Style="{StaticResource MaterialDesignGroupBox}"
                 Visibility="{Binding IsOnnxSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <GroupBox.Header>
-                    <Label
+                    <GroupBox.Header>
+                        <Label
                         Margin="0,-7,0,-7"
                         Content="ONNX Setup Guide"
                         Style="{StaticResource SecondaryHeaderLabel}" />
-                </GroupBox.Header>
-                <StackPanel>
-                    <TextBlock
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <TextBlock
                         FontSize="13"
                         TextWrapping="Wrap"
                         LineHeight="20">
-                        <Run FontWeight="Bold">How to add a new language (e.g., Japanese to Indonesian / ja-id):</Run>
+                        The app will automatically download the ONNX model for the selected translation direction. This may take a few minutes. If, even after a long time, the Models\YourLanguage folder is still empty, it means the model was not found or could not be downloaded. You can try downloading it manually from the HuggingFace website.
+                        <LineBreak/>
+                        <LineBreak/>
+                        <Run FontWeight="Bold">How to manually add a new language model:</Run>
+                        <LineBreak/>(e.g., Japanese to Indonesian / ja-id)
                         <LineBreak/>
                         1. Create a folder named <Run FontWeight="SemiBold">"ja-id"</Run> inside the application's <Run FontWeight="SemiBold">"Models"</Run> directory.
                         <LineBreak/>
-                        2. Download <Run FontWeight="SemiBold">encoder_model.onnx</Run>, <Run FontWeight="SemiBold">decoder_model.onnx</Run>, and <Run FontWeight="SemiBold">tokenizer.json</Run> (from HuggingFace) and place them inside the folder.
+                        2. Download <Run FontWeight="SemiBold">encoder_model.onnx</Run>, <Run FontWeight="SemiBold">decoder_model.onnx</Run>, <Run FontWeight="SemiBold">generation_config.json</Run>, and <Run FontWeight="SemiBold">tokenizer.json</Run> (from HuggingFace) and place them inside the folder.
                         <LineBreak/>
                         3. Open <Run FontWeight="SemiBold">tokenizer.json</Run> with Notepad, find the line containing <Run FontWeight="SemiBold">"normalizer": null,</Run> and delete it.
                         <LineBreak/>
                         4. Select the corresponding Source and Target languages in the app above to use it!
-                    </TextBlock>
-                </StackPanel>
-            </GroupBox>
-            <StackPanel Orientation="Horizontal">
-                <ComboBox
+                        </TextBlock>
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox
                     Width="130"
                     FontSize="14"
                     ItemsSource="{Binding Source={StaticResource ttsSystems}}"
                     SelectedItem="{Binding Path=TtsSystem}"
                     Style="{DynamicResource MaterialDesignComboBox}" />
-                <Label
+                    <Label
                     Margin="10,0,0,0"
                     HorizontalAlignment="Stretch"
                     Content="{DynamicResource Str.LangSettings.TtsSystem}"
                     Style="{StaticResource ControlCaptionLabel}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Visibility="{Binding IsTtsWindowsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ComboBox 
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsTtsWindowsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ComboBox 
                     ItemsSource="{Binding AvailableVoices}"
                     SelectedItem="{Binding SelectedVoice, Mode=TwoWay}"
                     DisplayMemberPath="Name"
                     Width="130"
                     FontSize="14"
                     Style="{DynamicResource MaterialDesignComboBox}"/>
-                <Label
+                    <Label
                     Margin="10,0,0,0"
                     HorizontalAlignment="Stretch"
                     Content="Voices"
                     Style="{StaticResource ControlCaptionLabel}" />
-            </StackPanel>
-            <GroupBox Margin="0,20,0,0" Style="{StaticResource MaterialDesignGroupBox}">
-                <GroupBox.Header>
-                    <Label
+                </StackPanel>
+                <GroupBox Margin="0,20,0,0" Style="{StaticResource MaterialDesignGroupBox}">
+                    <GroupBox.Header>
+                        <Label
                         Margin="0,-7,0,-7"
                         Content="{DynamicResource Str.ProxySettings.Proxy}"
                         Style="{StaticResource SecondaryHeaderLabel}" />
-                </GroupBox.Header>
-                <StackPanel>
-                    <TextBlock
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <TextBlock
                         FontSize="12"
                         Style="{StaticResource TextBlockBase}"
                         Text="{DynamicResource Str.ProxySettings.Note}"
                         TextWrapping="WrapWithOverflow" />
-                    <Button
+                        <Button
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
                         Command="{Binding ProxySettingsClickedCommand}"
                         Content="{DynamicResource Str.Button.SettingProxy}"
                         Style="{StaticResource PrimaryButton}" />
-                </StackPanel>
-            </GroupBox>
+                    </StackPanel>
+                </GroupBox>
             </StackPanel>
         </ScrollViewer>
         <DockPanel

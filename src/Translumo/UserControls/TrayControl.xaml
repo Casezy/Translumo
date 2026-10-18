@@ -21,7 +21,7 @@
     <Grid>
         <tb:TaskbarIcon
             Name="TiIcon"
-            DataContext="{Binding RelativeSource={RelativeSource AncestorType=controls:TrayControl}}"
+            DataContext="{Binding ElementName=TrayUserControl}"
             DoubleClickCommand="{Binding SettingsOpeningCommand}"
             IconSource="/Resources/Icons/favicon.ico"
             ToolTipText="{StaticResource ApplicationName}">

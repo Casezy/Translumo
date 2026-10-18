@@ -19,7 +19,8 @@ namespace Translumo.Translation.Configuration
             AiPromptTemplate = "You are an expert translator specializing in video game localization. Translate the text contextually and naturally from {0} to {1}. Output ONLY the direct translated text. Absolutely NO explanations, NO introductory phrases, NO markdown formatting, and NO code blocks. If the text is a single word or phrase, translate it as such.",
             RivaUrl = "https://integrate.api.nvidia.com/v1/chat/completions",
             RivaApiKey = string.Empty,
-            OnnxModelPath = "Models"
+            OnnxModelPath = "Models",
+            BeamCount = 2
         };
 
         public Languages TranslateFromLang
@@ -178,6 +179,15 @@ namespace Translumo.Translation.Configuration
             }
         }
 
+        public int BeamCount
+        {
+            get => _beamCount;
+            set
+            {
+                SetProperty(ref _beamCount, value);
+            }
+        }
+
         private Languages _translateFromLang;
         private Languages _translateToLang;
         private Translators _translator;
@@ -198,5 +208,6 @@ namespace Translumo.Translation.Configuration
         private string _aiPromptTemplate = "You are an expert translator specializing in video game localization. Translate the text contextually and naturally from {0} to {1}. Output ONLY the direct translated text. Absolutely NO explanations, NO introductory phrases, NO markdown formatting, and NO code blocks. If the text is a single word or phrase, translate it as such.";
         private List<Proxy> _proxySettings = new List<Proxy>();
         private string _onnxModelPath = "Models";
+        private int _beamCount = 1;
     }
 }

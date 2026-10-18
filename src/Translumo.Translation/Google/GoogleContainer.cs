@@ -25,13 +25,12 @@ namespace Translumo.Translation.Google
             httpReader.Proxy = proxy?.ToWebProxy();
 
             httpReader.ContentType = null;
-            httpReader.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+            httpReader.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
             httpReader.Accept = "*/*";
 
-            httpReader.OptionalHeaders.Add("Accept-Language", "en-US;q=0.8,en;q=0.7");
-            httpReader.OptionalHeaders.Add("Upgrade-Insecure-Requests", "1");
+            httpReader.OptionalHeaders.Add("Accept-Language", "en-US,en;q=0.9");
             httpReader.OptionalHeaders.Add("Cache-Control", "no-cache");
-            httpReader.OptionalHeaders.Add("DNT", "1");
+            httpReader.OptionalHeaders.Add("Referer", "https://translate.google.com/");
 
             return httpReader;
         }

@@ -32,6 +32,7 @@
     <system:String x:Key="Str.LangSettings.TranslationLang">目标语言（您想要看到的语言）</system:String>
     <system:String x:Key="Str.LangSettings.Translator">翻译源</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">朗读源</system:String>
+    <system:String x:Key="Str.LangSettings.BeamCount">Beam count (1=fastest, 2=recommended, >2=slower)</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">显示/隐藏 翻译墙</system:String>

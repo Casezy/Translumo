@@ -51,9 +51,6 @@
 
     <Border Background="{DynamicResource MaterialDesignPaper}">
         <materialDesign:DialogHost CloseOnClickAway="{Binding DialogService.AllowCloseOnClickAway}" IsOpen="{Binding DialogService.IsOpen}">
-            <materialDesign:DialogHost.DialogContent>
-                <views:SimpleDialogView />
-            </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250" />
